@@ -15,30 +15,35 @@ const list = [
     },
 ];
 
-function render(){
+const listElement = document.getElementById('list');
+const todoInput = document.getElementById('todoInput');
 
 
-list.forEach(el => {
-    const listItem = document.createElement('li');
-    const listItemText = document.createTextNode(el.title);
-    listItem.appendChild(listItemText);
-    document.getElementById('list').appendChild(listItem);
-});
+function render() {
+    list.forEach(el => {
+        const listItem = document.createElement('li');
+        const listItemText = document.createTextNode(el.title);
+        listItem.appendChild(listItemText);
+        const buttonItem = document.createElement('button');
+        const buttonItemText = document.createTextNode('Done');
+        buttonItem.appendChild(buttonItemText);
+        listItem.appendChild(buttonItem);
+        listElement.appendChild(listItem);
+    });
 
 }
 
 render();
 
-
-
 function addToList() {
-  const todoInputValue = document.getElementById('todoInput').value;
+    const todoInputValue = todoInput.value;
 
-  list.push({
-      id: Math.random(),
-      title: todoInputValue
-  })
-    console.log(list);
-document.getElementById('list').innerHTML = null;
+    list.push({
+        id: Math.random(),
+        title: todoInputValue
+    })
+
+    listElement.innerHTML = null;
     render();
+    todoInput.value = '';
 }
