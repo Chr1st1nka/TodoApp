@@ -18,6 +18,8 @@ const list = JSON.parse(localStorage.getItem('list'));
 
 const listElement = document.getElementById('list');
 const todoInput = document.getElementById('todoInput');
+//const buttonElement = document.getElementsByTagName('delete');
+
 
 
 function render() {
@@ -31,7 +33,12 @@ function render() {
         buttonItem.setAttribute('id', el.id);
         const buttonItemText = document.createTextNode('Done');
         buttonItem.appendChild(buttonItemText);
+        const buttonItemDelete = document.createElement('button');
+        buttonItemDelete.setAttribute('class', el.delete ? 'delete' : 'progress');
+        const buttonItemTextDelete = document.createTextNode('Delete');
+        buttonItemDelete.appendChild(buttonItemTextDelete);
         listItem.appendChild(buttonItem);
+        listItem.appendChild(buttonItemDelete);
         listElement.appendChild(listItem);
     });
 
